@@ -3,16 +3,18 @@ import { useDispatch } from "react-redux"
 
 import commentsActions from "../store/commentsSlice/actions";
 
-const CommentForm = ({ closeModal }) => {
+const CommentForm = ({ closeModal, parentCommentId = null}) => {
     const { taskId } = useParams()
     const dispatch = useDispatch()
 
     const handleSubmit = e => {
         e.preventDefault();
+
         const formData = {
             taskId,
             author: e.target.elements["author"].value,
-            text: e.target.elements["comment"].value
+            text: e.target.elements["comment"].value,
+            parentCommentId,
         }
     
         dispatch({

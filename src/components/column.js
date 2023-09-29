@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux"
 import { useDrop } from "react-dnd"
 import TaskCard from "./task-card"
 import Popup from "./popup"
+import TaskForm from "./task-form"
 
 import { taskStatus } from "../store/tasksSlice/consts"
 import tasksActions from "../store/tasksSlice/actions"
@@ -61,7 +62,11 @@ const Column = ({ projectId, title, tasks }) => {
                     ))}
                 </div>
             </div>
-            { openModal && <Popup closeModal={() => setOpenModal(false)} /> }
+            { openModal && 
+                <Popup closeModal={() => setOpenModal(false)} >
+                    <TaskForm />
+                </Popup>
+            }
         </>
     )
 }

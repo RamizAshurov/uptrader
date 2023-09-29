@@ -37,6 +37,14 @@ const tasksReducer = (state = initialState, action) => {
                 ...state.slice(taskIdx + 1)
             ]
         }
+        case tasksActions.editTask: {
+            const newTask = action.payload;
+            return state.map(task => {
+                if (task.id === newTask.id)
+                    return {...task, ...newTask}
+                return task
+            })
+        }
         default:
             return state
     }

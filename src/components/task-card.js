@@ -1,7 +1,7 @@
+import { useState } from "react"
 import { useDrag } from "react-dnd"
 
 const TaskCard = ({ number, id, name }) => {
-
     const [{ isDragging }, drag] = useDrag(() => ({
         type: "task-card",
         item: { id },
@@ -9,8 +9,6 @@ const TaskCard = ({ number, id, name }) => {
             isDragging: !!monitor.isDragging()
         })
     }))
-
-
 
     return (
         <div ref={drag} className="task-card card">

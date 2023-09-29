@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { useSelector } from "react-redux"
+import { useSelector, shallowEqual} from "react-redux"
 
 import Column from "../components/column"
 import SearchPanel from "../components/search-panel"
@@ -16,7 +16,7 @@ const SingleProjectPage = () => {
         const project = state.projects.find(project => project.id === projectId)
         return project.name
     })
-    const tasks = useSelector(state => state.tasks.filter(task => task.projectId === projectId)) // переделать
+    const tasks = useSelector(state => state.tasks.filter(task => task.projectId === projectId), shallowEqual) // переделать
 
     const filterTasks = (tasks, name, number, status) => {
         const searchByName = (tasks) => {
@@ -58,7 +58,7 @@ const SingleProjectPage = () => {
                         width="24px"
                         xmlSpace="preserve"
                     >
-                        <polygon points="352,128.4 319.7,96 160,256 160,256 160,256 319.7,416 352,383.6 224.7,256 "/>
+                        <polygon fill="currentColor" points="352,128.4 319.7,96 160,256 160,256 160,256 319.7,416 352,383.6 224.7,256 "/>
                     </svg>
                 </button>
                 <h1>{projectName}</h1>
