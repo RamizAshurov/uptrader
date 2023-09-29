@@ -25,7 +25,7 @@ const buttonStyles = {
 }
 
 
-const Column = ({ projectId, title, tasks }) => {
+const Column = ({ title, tasks }) => {
     const [openModal, setOpenModal] = useState(false)
     const dispatch = useDispatch()
     

@@ -134,6 +134,19 @@ li {
     color: rgba(255, 255, 255, 0.7)
 }
 
+.search-panel {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 20px;
+    margin: 15px 0;
+}
+
+@media screen and (max-width: 576px) {
+    .search-panel {
+        flex-direction: column;
+    }
+}
+
 .project-page__header {
     display: flex;
     gap: 20px;
@@ -151,6 +164,12 @@ li {
 .project-page__columns {
     display: flex;
     gap: 20px
+}
+
+@media screen and (max-width: 576px) {
+    .project-page__columns {
+        flex-direction: column;
+    }
 }
 
 .column {

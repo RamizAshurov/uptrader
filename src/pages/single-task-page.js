@@ -1,9 +1,10 @@
 import { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { useSelector, shallowEqual } from "react-redux" 
+import { useSelector } from "react-redux" 
 
 import Popup from "../components/popup"
 import TaskForm from "../components/task-form"
+import CommentForm from "../components/comment-form"
 import CommentsList from "../components/comments-list"
 
 import moment from "moment"
@@ -13,7 +14,6 @@ const SingleTaskPage = () => {
     const { taskId } = useParams()
     const navigate = useNavigate()
     const { id, number, name, description, status, priority, startDate, timeToDone} = useSelector(state => state.tasks.find(task => task.id === taskId))
-    // const comments = useSelector(state => state.comments.filter(comment => comment.taskId === taskId), shallowEqual)
 
     const format = {
         in: timeToDone.unit === "h" ? "lll" : "ll",
@@ -40,7 +40,7 @@ const SingleTaskPage = () => {
             <div className="task-page__header task__header">
                 <p className="task__number">
                     Task №{number}
-                    <button type="button" className="task__edit-button" onClick={() => setOpenModal(true)}>
+                    <button type="button" className="task__edit-button" onClick={() => setOpenModal("task")}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 50 50"
@@ -72,13 +72,17 @@ const SingleTaskPage = () => {
                     <p>{description}</p>
                 </div>
                 <div className="task__comments">
-                    <button className="tasks__create-comment" type="button" onClick={() => setOpenModal(true)}>Create a comment</button>
+                    <button className="tasks__create-comment" type="button" onClick={() => setOpenModal("comment")}>Create a comment</button>
                     <CommentsList taskId={taskId}/>
                 </div>
             </div>
             { openModal && 
                 <Popup closeModal={() => setOpenModal(false)}>
-                    <TaskForm curTask={{ id, number, name, priority, timeToDone, description }}/>
+                    {
+                        openModal === "task"
+                        ? <TaskForm curTask={{ id, number, name, priority, timeToDone, description }}/>
+                        : <CommentForm />
+                    }
                 </Popup>
             }
         </div>

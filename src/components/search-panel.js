@@ -1,15 +1,8 @@
-const containerStyles = {
-    display: "flex",
-    flexDirection: "row-reverse",
-    gap: "20px",
-    margin: "15px 0"
-}
-
 const SearchPanel = (props) => {
     const { searchNameValue, handleSearchNameChange, searchNumberValue, handleSearchNumberChange } = props
 
     return (
-        <div style={containerStyles}>
+        <div className="search-panel">
             <input
                 value={searchNameValue}
                 onChange={handleSearchNameChange}
